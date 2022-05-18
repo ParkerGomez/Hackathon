@@ -1,0 +1,53 @@
+//It declares the variable and gets the information from the data
+var title = getColumn("Best Selling Video Games", "Title");
+var sales = getColumn("Best Selling Video Games", "Sales");
+var releaseDate = getColumn("Best Selling Video Games", "Initial release date");
+var publisher = getColumn("Best Selling Video Games", "Publisher");
+
+//Makes a list for the filtered variables
+var filteredTitle = [];
+var filteredSales= [];
+var filteredReleaseDate = [];
+var filteredPublisher = [];
+
+//When the find games button is clicked it will change the screen to the info screen and do the get different games function and update screen function
+onEvent("gameFindButton", "click", function( ) {
+  setScreen("infoScreen");
+  getDifferentGames();
+  updateScreen();
+});
+
+//It gets the indiviual columns of data from the data set
+function getDifferentGames() {
+  for (var i = 0; i < title.length; i++) {
+      appendItem(filteredTitle, title[i]);
+      appendItem(filteredSales, sales[i]);
+      appendItem(filteredReleaseDate, releaseDate[i]);
+      appendItem(filteredPublisher, publisher[i]);
+  }
+}
+
+//It updates the screen to change the text
+function updateScreen() {
+  var index = randomNumber(0, filteredTitle.length - 1);
+  setText("titleText", filteredTitle[index]);
+  setText("salesText", filteredSales[index]);
+  setText("releaseDateText", filteredReleaseDate[index]);
+  setText("publisherText", filteredPublisher[index]);
+  
+}
+
+//When the start button is clicked it changes the screen to the list screen
+onEvent("startButton", "click", function( ) {
+  setScreen("listScreen");
+});
+
+//When the home button is clicked it changes the screen to the home screen
+onEvent("homeButton", "click", function( ) {
+  setScreen("homeScreen");
+});
+
+//When the ba
+onEvent("backButton", "click", function( ) {
+  setScreen("listScreen");
+});
